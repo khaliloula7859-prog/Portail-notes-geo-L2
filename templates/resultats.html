@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultats - {{ etudiant['matricule'] }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <h1>UNIVERSITE CHEIKH ANTA DIOP DE DAKAR</h1>
+  <p>Faculte des Lettres et Sciences Humaines &mdash; Licence 2 Geographie</p>
+</header>
+<div class="gold-bar"></div>
+
+<div class="container">
+
+  <div class="id-card">
+    <h2>{{ etudiant['prenom'] }} {{ etudiant['nom'] }}</h2>
+    <span class="matricule-tag">{{ etudiant['matricule'] }}</span>
+  </div>
+
+  {% for bloc in releves_par_bilan %}
+  <div class="bloc-semestre">
+    <h3>{{ bloc.bilan['semestre'] }} &mdash; {{ bloc.bilan['session'] }} &mdash; {{ bloc.bilan['annee'] }}</h3>
+    <table class="notes">
+      <thead>
+        <tr><th>UE</th><th>Note 1</th><th>Note 2</th><th>Resultat</th></tr>
+      </thead>
+      <tbody>
+        {% for n in bloc.notes %}
+        <tr>
+          <td>{{ n['ue_code'] }}</td>
+          <td>{{ n['note1'] or '-' }}</td>
+          <td>{{ n['note2'] or '-' }}</td>
+          <td>
+            <span class="badge {{ n['resultat_ue'] }}">{{ n['resultat_ue'] }}</span>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="summary">
+      <div class="summary-box">
+        <div class="value">{{ bloc.bilan['total_credit'] }}</div>
+        <div class="label">Credits obtenus / 30</div>
+      </div>
+      <div class="summary-box {{ 'result-SV' if bloc.bilan['resultat_semestre'] == 'SV' else 'result-SNV' }}">
+        <div class="value">{{ 'Valide' if bloc.bilan['resultat_semestre'] == 'SV' else 'Non valide' }}</div>
+        <div class="label">Resultat</div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <a href="/" class="back-link">&larr; Nouvelle recherche</a>
+</div>
+</body>
+</html>
