@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UCAD - Portail Notes L2 Geographie</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <h1>UNIVERSITE CHEIKH ANTA DIOP DE DAKAR</h1>
+  <p>Faculte des Lettres et Sciences Humaines &mdash; Licence 2 Geographie</p>
+</header>
+<div class="gold-bar"></div>
+
+<div class="container">
+  <div class="search-card">
+    <label for="matricule">Entrez votre numero d'etudiant (matricule)</label>
+    <form method="POST" action="/resultats" class="search-row">
+      <input type="text" id="matricule" name="matricule" placeholder="Ex : 20240D4WK" autocomplete="off" required>
+      <button type="submit">Voir mes notes</button>
+    </form>
+    <p class="hint">Vos notes sont strictement personnelles : seul votre matricule permet d'y acceder.</p>
+    {% if error %}
+    <div class="message error">{{ error }}</div>
+    {% endif %}
+  </div>
+</div>
+</body>
+</html>
