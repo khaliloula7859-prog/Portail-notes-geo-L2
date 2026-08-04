@@ -95,6 +95,8 @@ table.notes th, table.notes td {
 table.notes th { background: var(--navy); color: white; font-weight: 600; }
 table.notes tr:last-child td { border-bottom: none; }
 
+.ue-label { color: #7a7f8c; font-size: 0.75rem; }
+
 .badge {
   display: inline-block;
   padding: 3px 9px;

@@ -5,6 +5,16 @@ import os
 app = Flask(__name__)
 DB_PATH = os.path.join(os.path.dirname(__file__), "data", "portail.db")
 
+# Intitules complets des UE (a completer si de nouveaux codes apparaissent
+# avec les futurs semestres / rattrapages)
+UE_LABELS = {
+    "GEO231": "Elements de climatologie / Elements de geomorphologie",
+    "GEO232": "Geographie de la population / Geographie economique",
+    "GEO233": "TD geomorphologie structurale I / Cartographie",
+    "GEO234": "Geographie regionale Europe / Geographie regionale Amerique du sud",
+    "GEO235": "Geographie regionale Afrique / Geographie regionale Asie",
+}
+
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
@@ -53,7 +63,10 @@ def resultats():
 
     conn.close()
     return render_template(
-        "resultats.html", etudiant=etudiant, releves_par_bilan=releves_par_bilan
+        "resultats.html",
+        etudiant=etudiant,
+        releves_par_bilan=releves_par_bilan,
+        ue_labels=UE_LABELS,
     )
 
 

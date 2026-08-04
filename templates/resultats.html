@@ -30,7 +30,10 @@
       <tbody>
         {% for n in bloc.notes %}
         <tr>
-          <td>{{ n['ue_code'] }}</td>
+          <td>
+            <strong>{{ n['ue_code'] }}</strong><br>
+            <span class="ue-label">{{ ue_labels.get(n['ue_code'], '') }}</span>
+          </td>
           <td>{{ n['note1'] or '-' }}</td>
           <td>{{ n['note2'] or '-' }}</td>
           <td>
