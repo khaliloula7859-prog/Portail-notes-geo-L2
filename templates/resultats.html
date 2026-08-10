@@ -16,8 +16,11 @@
 <div class="container">
 
   <div class="id-card">
-    <h2>{{ etudiant['prenom'] }} {{ etudiant['nom'] }}</h2>
-    <span class="matricule-tag">{{ etudiant['matricule'] }}</span>
+    <div class="avatar">{{ (etudiant['prenom'][0] ~ etudiant['nom'][0])|upper }}</div>
+    <div>
+      <h2>{{ etudiant['prenom'] }} {{ etudiant['nom'] }}</h2>
+      <span class="matricule-tag">{{ etudiant['matricule'] }}</span>
+    </div>
   </div>
 
   {% for bloc in releves_par_bilan %}
@@ -55,6 +58,14 @@
     </div>
   </div>
   {% endfor %}
+
+  <div class="notice">
+    <span class="icon">&#9432;</span>
+    <span>
+      Si tu attends un 2e semestre ou un rattrapage et qu'il n'apparait pas ci-dessus,
+      c'est que les resultats officiels ne sont pas encore publies. Ils seront ajoutes des leur sortie.
+    </span>
+  </div>
 
   <a href="/" class="back-link">&larr; Nouvelle recherche</a>
 </div>
