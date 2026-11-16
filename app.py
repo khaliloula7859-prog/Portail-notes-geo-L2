@@ -215,3 +215,21 @@ def telecharger_pdf():
 
 if __name__ == "__main__":
     app.run(debug=True)
+@app.route("/stats", methods=["GET"])
+def stats():
+    conn = get_db()
+    lignes = conn.execute(
+        """SELECT semestre, session, annee, resultat_semestre, COUNT(*) as nombre
+           FROM bilans
+           GROUP BY semestre, session, annee, resultat_semestre
+           ORDER BY annee DESC, semestre ASC, session ASC"""
+    ).fetchall()
+    conn.close()
+
+    stats_groupees = {}
+    for l in lignes:
+        cle = (l["semestre"], l["session"], l["annee"])
+        stats_groupees.setdefault(cle, {"SV": 0, "SNV": 0})
+        stats_groupees[cle][l["resultat_semestre"]] = l["nombre"]
+
+    return render_template("stats.html", stats=stats_groupees)
