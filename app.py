@@ -15,12 +15,18 @@ DB_PATH = os.path.join(os.path.dirname(__file__), "data", "portail.db")
 
 # Intitules complets des UE (a completer si de nouveaux codes apparaissent
 # avec les futurs semestres / rattrapages)
-UE_LABELS = {
+UE_LABELS = UE_LABELS = {
     "GEO231": "Elements de climatologie / Elements de geomorphologie",
     "GEO232": "Geographie de la population / Geographie economique",
     "GEO233": "TD geomorphologie structurale I / Cartographie",
     "GEO234": "Geographie regionale Europe / Geographie regionale Amerique du sud",
     "GEO235": "Geographie regionale Afrique / Geographie regionale Asie",
+    "GEO241": "Elements d'hydrologie / Elements de biogeographie",
+    "GEO242": "Questions de geographie actuelle / Mondialisation et territoires",
+    "GEO243": "TD geomorphologie structurale II / Statistique descriptive",
+    "GEO244": "Methodologie historique / Elements de sociologie",
+    "GEO245": "Methodologie historique / Elements de demographie",
+    "GEO246": "Methodologie historique / Elements d'economie",
 }
 
 
